@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ironhack-labs/cohort-tools-project#readme",
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
