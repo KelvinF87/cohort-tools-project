@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const PORT = 5005;
 
+const dataCohotrs = require('./cohorts.json')
+
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
@@ -27,6 +29,10 @@ app.use(cookieParser());
 // ...
 app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
+});
+
+app.get("/api/cohorts", (req, res) => {
+  res.json(dataCohotrs);
 });
 
 
