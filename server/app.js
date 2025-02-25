@@ -2,10 +2,14 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const PORT = 5005;
+const mongoose = require('mongoose');
+
 
 const dataCohotrs = require('./cohorts.json');
 const dataStudents = require('./students.json');
 const cors = require('cors');
+//create mongoose connection with DB
+mongoose.connect('mongodb://127.0.0.1:27017/cohort-tools-api')
 
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
