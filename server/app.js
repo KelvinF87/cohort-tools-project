@@ -10,8 +10,8 @@ const dataCohotrs = require('./cohorts.json');
 const dataStudents = require('./students.json');
 const cors = require('cors');
 
-const Cohort = require('../models/Cohort.model')
-const Student = require('../models/Student.model')
+const Cohort = require('./models/Cohort.model')
+const Student = require('./models/Student.model')
 //create mongoose connection with DB
 mongoose
   .connect(process.env.DB_URL)
