@@ -3,14 +3,18 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const PORT = 5005;
 const mongoose = require('mongoose');
-const URLDB = process.env.DB_URL;
+// const URLDB = process.env.DB_URL;
+require('dotenv').config();
 
 const dataCohotrs = require('./cohorts.json');
 const dataStudents = require('./students.json');
 const cors = require('cors');
+
+const Cohort = require('../models/Cohort.model')
+const Student = require('../models/Student.model')
 //create mongoose connection with DB
 mongoose
-  .connect(URLDB)
+  .connect(process.env.DB_URL)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err, "Error connecting to MongoDB"));
 
