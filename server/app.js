@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 // const URLDB = process.env.DB_URL;
 require('dotenv').config();
 
-const dataCohotrs = require('./cohorts.json');
-const dataStudents = require('./students.json');
+const dataCohotrs = require('../data/cohorts.json');
+const dataStudents = require("../data/students.json");
 const cors = require('cors');
 
 const Cohort = require('./models/Cohort.model')
