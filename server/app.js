@@ -12,6 +12,7 @@ const cors = require('cors');
 
 const Cohort = require('./models/Cohort.model')
 const Student = require('./models/Student.model')
+
 //create mongoose connection with DB
 mongoose
   .connect(process.env.DB_URL)
@@ -54,6 +55,30 @@ app.get("/api/cohorts", (req, res) => {
 app.get("/api/students", (req, res) => {
   res.json(dataStudents);
 });
+
+app.post("/api/students",(req,res)=>{
+  Student.create({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone,
+    linkedinUrl: req.body.linkedinUrl,
+    languages: req.body.languages,
+    program: req.body.program,
+    background: req.body.background,
+    image: req.body.image,
+    cohort: req.body.cohort,
+    projects: req.body.projects
+})
+    .then(createStudent =>{
+      console.log("Student created ", createStudent);
+      res.status(201).json(createStudent);
+    })
+    .catch(err=>{
+      console.error(err, "Error to create student")
+      res.status(500).json({error:"Failed to create student"+err})
+    })
+})
 
 
 // START SERVER
