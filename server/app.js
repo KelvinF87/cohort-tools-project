@@ -76,6 +76,7 @@ app.post("/api/students", (req, res) => {
 // ENDPOINT GET ALL STUDENTS
 app.get("/api/students", (req, res) => {
   Student.find({})
+    .populate("cohort")
     .then((students) => {
       console.log("Retrieved students ->", students);
 
@@ -92,6 +93,7 @@ app.get("/api/students/cohort/:cohortId", (req, res) => {
   const cohortId = req.params.cohortId;
 
   Student.find({ cohort: cohortId })
+    .populate("cohort")
     .then((students) => {
       console.log("Retrieved students ->", students);
 
@@ -108,6 +110,7 @@ app.get("/api/students/:studentId", (req, res) => {
   const studentId = req.params.studentId;
 
   Student.findById(studentId)
+    .populate("cohort")
     .then((students) => {
       console.log("Retrieved students ->", students);
 
