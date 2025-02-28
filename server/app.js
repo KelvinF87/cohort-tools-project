@@ -6,12 +6,12 @@ const mongoose = require("mongoose");
 // const URLDB = process.env.DB_URL;
 require("dotenv").config();
 
-const dataCohotrs = require("../data/cohorts.json");
-const dataStudents = require("../data/students.json");
 const cors = require("cors");
-
 const Cohort = require("./models/Cohort.model");
 const Student = require("./models/Student.model");
+const { isAuthenticated } = require("./middleware/jwt.middleware");
+const userRouter = require("./routes/user.routes");
+const authRouter = require("./routes/auth.routes");
 
 //create mongoose connection with DB
 mongoose
@@ -47,6 +47,11 @@ app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
 
+
+app.use("/api", isAuthenticated, userRouter);            // <== UPDATE
+ 
+
+app.use("/auth", isAuthenticated, authRouter); 
 
 // ENDPOINT POST NEW STUDENT
 app.post("/api/students", (req, res) => {
