@@ -31,7 +31,7 @@ const app = express();
 // ...
 app.use(
   cors({
-    origin: ["http://localhost:5005", "http://localhost:3000","http://localhost:5174"],
+    origin: ["http://localhost:5005", "http://localhost:3000","http://localhost:5173"],
   })
 );
 app.use(express.json());
@@ -52,11 +52,6 @@ app.use("/api", isAuthenticated, userRouter);            // <== UPDATE
  
 
 app.use("/auth", authRouter); 
-
-
-
-
-
 
 // ENDPOINT POST NEW STUDENT
 app.post("/api/students", (req, res) => {
