@@ -40,49 +40,38 @@ authRouter.post("/signup", (req, res, next) => {
 
 authRouter.post('/login', (req, res, next) => {
   const { email, password } = req.body;
- 
-  // Check if email or password are provided as empty string 
-  if (email === '' || password === '') {
-    res.status(400).json({ message: "Provide email and password." });
-    return;
+  // Validar que se proporcionen email y contraseña
+  if (!email || !password) {
+    return res.status(400).json({ message: "Proporcione email y contraseña." });
   }
- 
-  // Check the users collection if a user with the same email exists
+  // Buscar el usuario en la base de datos
   User.findOne({ email })
     .then((foundUser) => {
-    
       if (!foundUser) {
-        // If the user is not found, send an error response
-        res.status(401).json({ message: "User not found." })
-        return;
+        // Usuario no encontrado
+        return res.status(401).json({ message: "Usuario no encontrado." });
       }
- 
-      // Compare the provided password with the one saved in the database
+      // Comparar la contraseña proporcionada con la almacenada
       const passwordCorrect = bcrypt.compareSync(password, foundUser.password);
- 
-      if (passwordCorrect) {
-        // Deconstruct the user object to omit the password
-        const { _id, email, name } = foundUser;
-        
-        // Create an object that will be set as the token payload
-        const payload = { _id, email, name };
- 
-        // Create and sign the token
-        const authToken = jwt.sign( 
-          payload,
-          process.env.TOKEN_SECRET,
-          { algorithm: 'HS256', expiresIn: "6h" }
-        );
- 
-        // Send the token as the response
-        res.status(200).json({ authToken: authToken });
+      if (!passwordCorrect) {
+        return res.status(401).json({ message: "No se pudo autenticar al usuario." });
       }
-      else {
-        res.status(401).json({ message: "Unable to authenticate the user" });
-      }
- 
+      // Si la contraseña es correcta, crear el token
+      const { _id, email, name } = foundUser;
+      const payload = { _id, email, name };
+      // Generar el token
+      const authToken = jwt.sign(
+        payload,
+        process.env.TOKEN_SECRET,
+        { algorithm: 'HS256', expiresIn: "6h" }
+      );
+      // Enviar el token como respuesta
+      res.status(200).json({ authToken });
     })
-    .catch(err => res.status(500).json({ message: "Internal Server Error" }));
+    .catch(err => {
+      console.error(err); // Log del error para depuración
+      res.status(500).json({ message: "Error interno del servidor." });
+    });
 });
 
 authRouter.get("/verify", isAuthenticated, (req,res,next)=>{

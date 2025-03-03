@@ -10,7 +10,7 @@ function CohortListPage() {
   const [cohorts, setCohorts] = useState([]);
   const [campusQuery, setCampusQuery] = useState("");
   const [programQuery, setProgramQuery] = useState("");
-
+ const token = localStorage.getItem("authToken");
   const handleChange = (event, updateState) => {
     updateState(event.target.value);
   };
@@ -19,9 +19,14 @@ function CohortListPage() {
     let queryString = "";
     if (campusQuery) queryString += `campus=${campusQuery}&`;
     if (programQuery) queryString += `program=${programQuery}`;
-
+   
     axios
-      .get(`${API_URL}/api/cohorts?${queryString}`)
+
+      .get(`${API_URL}/api/cohorts?${queryString}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setCohorts(response.data);
       })
@@ -30,7 +35,11 @@ function CohortListPage() {
 
   const getAllCohorts = () => {
     axios
-      .get(`${API_URL}/api/cohorts`)
+      .get(`${API_URL}/api/cohorts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setCohorts(response.data);
       })
@@ -60,15 +69,13 @@ function CohortListPage() {
       </div>
 
       {cohorts &&
-        cohorts.map(
-          (cohort, index) => (
-              <CohortCard
-                key={cohort._id}
-                {...cohort}
-                className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
-              />
-          )
-        )}
+        cohorts.map((cohort, index) => (
+          <CohortCard
+            key={cohort._id}
+            {...cohort}
+            className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
+          />
+        ))}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import StudentCreateForm from "../components/StudentCreateForm";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function CohortDetailsPage() {
+  const token = localStorage.getItem("authToken");
   const [cohort, setCohort] = useState(null);
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,11 @@ function CohortDetailsPage() {
 
   const getCohort = useCallback(() => {
     axios
-      .get(`${API_URL}/api/cohorts/${cohortId}`)
+      .get(`${API_URL}/api/cohorts/${cohortId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         const oneCohort = response.data;
         setCohort(oneCohort);
@@ -28,7 +33,11 @@ function CohortDetailsPage() {
 
   const getStudents = useCallback(() => {
     axios
-      .get(`${API_URL}/api/students/cohort/${cohortId}`)
+      .get(`${API_URL}/api/students/cohort/${cohortId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         const allStudents = response.data;
         setStudents(allStudents);

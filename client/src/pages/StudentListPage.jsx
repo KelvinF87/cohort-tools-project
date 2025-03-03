@@ -8,10 +8,14 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function StudentListPage() {
   const [students, setStudents] = useState([]);
-
+  const token = localStorage.getItem("authToken");
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/students?$`)
+      .get(`${API_URL}/api/students?$`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setStudents(response.data)})
       .catch((error) => console.log(error));
