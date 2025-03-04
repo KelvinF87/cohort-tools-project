@@ -21,6 +21,8 @@ const DEFAULT_COHORT_FORM_VALUES = {
 };
 
 function CohortCreatePage() {
+  const token = localStorage.getItem("authToken");
+
   const [cohort, setCohort] = useState({ ...DEFAULT_COHORT_FORM_VALUES });
 
   const navigate = useNavigate();
@@ -47,7 +49,11 @@ function CohortCreatePage() {
     };
 
     axios
-      .post(`${API_URL}/api/cohorts`, requestBody)
+      .post(`${API_URL}/api/cohorts`, requestBody, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         const newCohort = response.data;
 

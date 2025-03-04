@@ -1,6 +1,6 @@
 [
   {
-    "_id": 1,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f81" },
     "inProgress": false,
     "cohortSlug": "ft-wd-paris-2023-07-03",
     "cohortName": "FT WD PARIS 2023 07",
@@ -13,12 +13,12 @@
     "totalHours": 360
   },
   {
-    "_id": 2,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f82" },
     "cohortSlug": "pt-ux-berlin-2023-02-06",
     "cohortName": "PT UX BERLIN 2023 02",
     "program": "UX/UI",
     "format": "Part Time",
-    "campus": "BERLIN",
+    "campus": "Berlin",
     "startDate": "2023-02-06T00:00:00.000Z",
     "endDate": "2023-08-06T00:00:00.000Z",
     "inProgress": false,
@@ -27,7 +27,7 @@
     "totalHours": 360
   },
   {
-    "_id": 3,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f83" },
     "cohortSlug": "ft-da-miami-2023-03-06",
     "cohortName": "FT DA MIAMI 2023 03",
     "program": "Data Analytics",
@@ -41,7 +41,7 @@
     "totalHours": 360
   },
   {
-    "_id": 4,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f84" },
     "cohortSlug": "pt-cy-paris-2023-04-03",
     "cohortName": "PT CY PARIS 2023 04",
     "program": "Cybersecurity",

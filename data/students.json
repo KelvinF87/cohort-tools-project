@@ -1,6 +1,6 @@
 [
   {
-    "_id": 1,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f85" },
     "firstName": "Christine",
     "lastName": "Clayton",
     "email": "christine.clayton@example.com",
@@ -10,11 +10,11 @@
     "program": "Web Dev",
     "background": "Computer Engineering",
     "image": "https://i.imgur.com/r8bo8u7.png",
-    "cohort": 1,
-    "projects": []
+    "projects": [],
+    "cohort": { "$oid": "616c4b4c649eaa001dd50f81" }
   },
   {
-    "_id": 2,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f86" },
     "firstName": "Grace",
     "lastName": "Green",
     "email": "grace.green@example.com",
@@ -24,11 +24,11 @@
     "program": "Web Dev",
     "background": "Software Development",
     "image": "https://i.imgur.com/r8bo8u7.png",
-    "cohort": 1,
-    "projects": []
+    "projects": [],
+    "cohort": { "$oid": "616c4b4c649eaa001dd50f81" }
   },
   {
-    "_id": 3,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f87" },
     "firstName": "Jack",
     "lastName": "Johnson",
     "email": "jack.johnson@example.com",
@@ -38,11 +38,11 @@
     "program": "Web Dev",
     "background": "System Administration",
     "image": "https://i.imgur.com/r8bo8u7.png",
-    "cohort": 1,
-    "projects": []
+    "projects": [],
+    "cohort": { "$oid": "616c4b4c649eaa001dd50f81" }
   },
   {
-    "_id": 4,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f88" },
     "firstName": "John",
     "lastName": "Doe",
     "email": "john.doe@example.com",
@@ -52,11 +52,11 @@
     "program": "UX/UI",
     "background": "Computer Science",
     "image": "https://i.imgur.com/r8bo8u7.png",
-    "cohort": 2,
-    "projects": []
+    "projects": [],
+    "cohort": { "$oid": "616c4b4c649eaa001dd50f82" }
   },  
   {
-    "_id": 5,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f89" },
     "firstName": "Katie",
     "lastName": "King",
     "email": "katie.king@example.com",
@@ -66,11 +66,11 @@
     "program": "UX/UI",
     "background": "Information Systems",
     "image": "https://i.imgur.com/r8bo8u7.png",
-    "cohort": 2,
-    "projects": []
+    "projects": [],
+    "cohort": { "$oid": "616c4b4c649eaa001dd50f82" }
   },
   {
-    "_id": 6,
+    "_id": { "$oid": "616c4b4c649eaa001dd50f8a" },
     "firstName": "Irene",
     "lastName": "Iverson",
     "email": "irene.iverson@example.com",
@@ -80,7 +80,7 @@
     "program": "Data Analytics",
     "background": "Economics",
     "image": "https://i.imgur.com/r8bo8u7.png",
-    "cohort": 3,
-    "projects": []
+    "projects": [],
+    "cohort": { "$oid": "616c4b4c649eaa001dd50f83" }
   }
 ]

@@ -28,7 +28,7 @@ function CohortEditPage() {
   const [cohort, setCohort] = useState({ ...DEFAULT_COHORT_FORM_VALUES });
   const [loading, setLoading] = useState(true);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-
+  const token = localStorage.getItem("authToken");
   const { cohortId } = useParams();
 
   const navigate = useNavigate();
@@ -55,14 +55,22 @@ function CohortEditPage() {
     };
 
     axios
-      .put(`${API_URL}/api/cohorts/${cohortId}`, requestBody)
+      .put(`${API_URL}/api/cohorts/${cohortId}`, requestBody , {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => navigate(`/cohorts/details/${cohortId}`))
       .catch((error) => console.log(error));
   };
 
   const handleDelete = () => {
     axios
-      .delete(`${API_URL}/api/cohorts/${cohort._id}`)
+      .delete(`${API_URL}/api/cohorts/${cohort._id}` , {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => navigate(`/dashboard`))
       .catch((error) => console.log(error));
   };
@@ -70,7 +78,11 @@ function CohortEditPage() {
   useEffect(() => {
     const getCohort = () => {
       axios
-        .get(`${API_URL}/api/cohorts/${cohortId}`)
+        .get(`${API_URL}/api/cohorts/${cohortId}` , {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           const oneCohort = response.data;
           setCohort({

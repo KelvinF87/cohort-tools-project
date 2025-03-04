@@ -8,6 +8,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 
 function SignupPage() {
+   const token = localStorage.getItem("authToken");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -29,7 +30,11 @@ function SignupPage() {
     // Make an axios request to the API
     // If POST request is successful redirect to login page
     // If the request resolves with an error, set the error message in the state
-    axios.post(`${API_URL}/auth/signup`, requestBody)
+    axios.post(`${API_URL}/auth/signup`, requestBody, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    } )
       .then(() => {
         navigate("/login");
       })
